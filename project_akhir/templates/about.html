@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - PsyRoom</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/flowbite@1.6.0/dist/flowbite.min.js"></script>
+    <style>
+        .bg-cover-custom {
+            background-image: url('{{ url_for("static", filename="images/about_us.png") }}');
+            background-size: cover;
+            background-position: center;
+            height: 600px;
+        }
+        .bg-overlay {
+            background: rgba(0, 0, 0, 0.4);
+            height: 600px;
+        }
+        .hero-text {
+            z-index: 10;
+        }
+        .hover-card:hover {
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Header Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-4">
+                    <div>
+                        <a href="/" class="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900">
+                            <svg class="w-8 h-8 text-blue-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.5l3.09 6.26L22 11l-5 4.87L18.18 21 12 17.77 5.82 21 7 15.87 2 11l6.91-0.24L12 4.5z" />
+                            </svg>
+                            <span class="font-bold text-xl text-blue-500">PsyRoom</span>
+                        </a>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-1">
+                        <a href="/" class="py-5 px-3 text-gray-700 hover:text-gray-900">Home</a>
+                        <a href="/about" class="py-5 px-3 text-gray-700 hover:text-gray-900">About Us</a>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="/login" class="py-2 px-8 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition duration-300">Login</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="mobile-menu-button">
+                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-menu hidden md:hidden">
+            <a href="/" class="block py-2 px-4 text-sm hover:bg-gray-200">Home</a>
+            <a href="/about" class="block py-2 px-4 text-sm hover:bg-gray-200">About Us</a>
+            <a href="/login" class="block py-2 px-4 text-sm bg-blue-500 text-white rounded-lg mt-2 hover:bg-blue-600">Login</a>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="relative">
+        <div class="bg-cover-custom"></div>
+        <div class="bg-overlay absolute inset-0"></div>
+        <div class="absolute inset-0 flex items-center justify-center text-white hero-text">
+            <div class="text-center">
+                <h1 class="text-6xl font-bold mb-4">Tentang Kami</h1>
+                <p class="text-xl">Pelajari perjalanan kami dan temui tim profesional kami yang berdedikasi.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section class="max-w-6xl mx-auto px-4 py-12">
+        <h2 class="text-4xl font-bold text-center mb-6">Sejarah Kami</h2>
+        <p class="text-gray-600 text-lg text-center">PsyRoom didirikan pada tahun 2020 dengan tujuan untuk membuat layanan kesehatan mental lebih mudah diakses oleh semua orang. Ide ini muncul dari meningkatnya kesadaran akan isu kesehatan mental dan kebutuhan akan platform daring yang menghubungkan orang dengan psikiater dan terapis profesional.</p>
+        <p class="text-gray-600 text-lg text-center mt-4">Para pendiri kami, yang didorong oleh hasrat untuk membantu sesama, bertujuan menciptakan ruang aman di mana individu dapat mencari bimbingan, dukungan, dan konseling tanpa stigma atau hambatan.</p>
+    </section>
+
+    <!-- About Content Section -->
+         <!-- Meet Our Psychiatrists with CTA -->
+    <section class="max-w-6xl mx-auto px-4 py-16">
+        <h2 class="text-4xl font-bold text-center mb-12">Temui Psikiater Kami</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white rounded-lg shadow-lg p-6 hover-card text-center">
+                <img src="{{ url_for('static', filename='images/psikiater1.png') }}" alt="Dr. Erwin" class="rounded-t-lg w-full h-48 object-cover">
+                <h3 class="text-2xl font-bold mt-4">Dr. Catharina Nidyaputri, S. Psi, M. Psi, Psikolog</h3>
+                <p class="text-gray-600">Ahli psikologi klinis dengan pengalaman 15 tahun.</p>
+                <a href="/login" class="block mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Konsultasi Sekarang</a>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 hover-card text-center">
+                <img src="{{ url_for('static', filename='images/psikiater2.png') }}" alt="Dr. Dika" class="rounded-t-lg w-full h-48 object-cover">
+                <h3 class="text-2xl font-bold mt-4">Dr. Agnes M. Amalia L.W, S.Psi, M.Psi.</h3>
+                <p class="text-gray-600">Spesialis terapi keluarga dan kecerdasan emosional.</p>
+                <a href="/login" class="block mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Konsultasi Sekarang</a>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 hover-card text-center">
+                <img src="{{ url_for('static', filename='images/psikiater3.png') }}" alt="Dr. Panjol" class="rounded-t-lg w-full h-48 object-cover">
+                <h3 class="text-2xl font-bold mt-4">Dr. Christina Tedja, S.Psi, M.Psi, Psikolog</h3>
+                <p class="text-gray-600">Fokus pada kesehatan mental remaja dan terapi perilaku.</p>
+                <a href="/login" class="block mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Konsultasi Sekarang</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="text-black py-12 text-center">
+        <h2 class="text-3xl font-bold mb-4">Siap Memulai Perjalanan Anda?</h2>
+        <p class="mb-6">Hubungi kami hari ini dan jadwalkan konsultasi pertama Anda.</p>
+        <a href="/login" class="py-3 px-6 bg-blue-800 text-white rounded-lg shadow-md hover:bg-blue-600 transition duration-300">Buat Janji Sekarang</a>
+    </section>
+
+  <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-200 mt-12">
+        <div class="max-w-6xl mx-auto px-4 py-10">
+            <div class="flex flex-wrap justify-between">
+                <!-- About Section -->
+                <div class="w-full md:w-1/3 mb-6 md:mb-0">
+                    <h2 class="text-xl font-bold text-white mb-4">Tentang PsyRoom</h2>
+                    <p class="text-gray-400">PsyRoom menyediakan layanan konsultasi online</p>
+                    <p class="text-gray-400">dan psikolog berlisensi siap membantu</p>
+                    <p class="text-gray-400">Anda mengatasi masalah emosional dan mental</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="w-full md:w-1/3 mb-6 md:mb-0">
+                    <h2 class="text-xl font-bold text-white mb-4">Tautan Cepat</h2>
+                    <ul class="text-gray-400">
+                        <li class="mb-2"><a href="/" class="hover:text-blue-400">Home</a></li>
+                        <li class="mb-2"><a href="/about" class="hover:text-blue-400">About Us</a></li>
+                        <li class="mb-2"><a href="/services" class="hover:text-blue-400">Services</a></li>
+                        <li class="mb-2"><a href="https://wa.me/+6285728795214" class="hover:text-blue-400">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="w-full md:w-1/3">
+                    <h2 class="text-xl font-bold text-white mb-4">Kontak Kami</h2>
+                    <p class="text-gray-400">Email: support@psyroom.com</p>
+                    <p class="text-gray-400">Telepon: +62 857 2879 5214</p>
+                    <p class="text-gray-400">Alamat: Jl. Kronggahan, Sleman, Yogyakarta</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-gray-900 py-4">
+            <div class="max-w-6xl mx-auto text-center">
+                <p class="text-gray-500 text-sm">&copy; 2024 PsyRoom. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const btn = document.querySelector('.mobile-menu-button');
+        const menu = document.querySelector('.mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

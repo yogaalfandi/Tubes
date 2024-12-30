@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konsultasi Psikologi</title>
+    <!-- Menambahkan Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans text-gray-900">
+
+    <!-- Header Section -->
+    <header class="bg-blue-600 text-white text-center py-6">
+        <h1 class="text-3xl font-bold">Teman Konsultasi Psikologi</h1>
+        <p class="mt-2">Temukan ruang aman untuk berbicara dan mendapatkan dukungan</p>
+    </header>
+
+    <!-- Salutation Section -->
+    <header class="text-center py-4">
+        <h1 class="text-xl font-semibold">Selamat Datang, {{ username }}</h1>
+    </header>
+
+    <!-- Logout Button (only visible if user is authenticated) -->
+    {% if current_user.is_authenticated %}
+    <div class="text-center py-4">
+        <form action="/logout" method="POST">
+            <button type="submit" class="bg-red-600 text-white px-6 py-2 rounded-full hover:bg-red-500">Logout</button>
+        </form>
+    </div>
+    {% endif %}
+
+    <!-- Main Section -->
+    <main class="max-w-4xl mx-auto px-4 py-8">
+
+        <!-- Form Section -->
+        <section class="bg-white shadow-md rounded-lg p-6 mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Masukkan Data Diri Anda</h2>
+            <form action="/add" method="POST">
+                <label for="name" class="block text-sm font-medium mb-2">Nama:</label>
+                <input type="text" id="name" name="name" class="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md" required>
+
+                <label for="age" class="block text-sm font-medium mb-2">Umur:</label>
+                <input type="number" id="age" name="age" class="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md" required>
+
+                <label for="email" class="block text-sm font-medium mb-2">Email:</label>
+                <input type="email" id="email" name="email" class="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md" required>
+
+                <button type="submit" class="w-full bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-500">Simpan</button>
+            </form>
+        </section>
+
+        <!-- Data List Section -->
+        <section class="bg-white shadow-md rounded-lg p-6">
+            <h2 class="text-2xl font-semibold mb-4">Daftar Pengguna</h2>
+            <table class="w-full table-auto">
+                <thead class="bg-gray-200">
+                    <tr>
+                        <th class="px-4 py-2 text-left">Nama</th>
+                        <th class="px-4 py-2 text-left">Umur</th>
+                        <th class="px-4 py-2 text-left">Email</th>
+                        <th class="px-4 py-2 text-left">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr class="border-b">
+                        <td class="px-4 py-2">{{ user.name }}</td>
+                        <td class="px-4 py-2">{{ user.age }}</td>
+                        <td class="px-4 py-2">{{ user.email }}</td>
+                        <td class="px-4 py-2">
+                            <a href="/edit/{{ user.id }}" class="text-blue-600 hover:text-blue-500">Edit</a> |
+                            <a href="/delete/{{ user.id }}" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="text-red-600 hover:text-red-500">Hapus</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-200 mt-12">
+        <div class="max-w-6xl mx-auto px-4 py-10">
+            <div class="flex flex-wrap justify-between">
+                <!-- About Section -->
+                <div class="w-full md:w-1/3 mb-6 md:mb-0">
+                    <h2 class="text-xl font-bold text-white mb-4">Tentang PsyRoom</h2>
+                    <p class="text-gray-400">PsyRoom menyediakan layanan konsultasi online</p>
+                    <p class="text-gray-400">dan psikolog berlisensi siap membantu</p>
+                    <p class="text-gray-400">Anda mengatasi masalah emosional dan mental</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="w-full md:w-1/3 mb-6 md:mb-0">
+                    <h2 class="text-xl font-bold text-white mb-4">Tautan Cepat</h2>
+                    <ul class="text-gray-400">
+                        <li class="mb-2"><a href="/" class="hover:text-blue-400">Home</a></li>
+                        <li class="mb-2"><a href="/about" class="hover:text-blue-400">About Us</a></li>
+                        <li class="mb-2"><a href="/services" class="hover:text-blue-400">Services</a></li>
+                        <li class="mb-2"><a href="https://wa.me/+6285728795214" class="hover:text-blue-400">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="w-full md:w-1/3">
+                    <h2 class="text-xl font-bold text-white mb-4">Kontak Kami</h2>
+                    <p class="text-gray-400">Email: support@psyroom.com</p>
+                    <p class="text-gray-400">Telepon: +62 857 2879 5214</p>
+                    <p class="text-gray-400">Alamat: Jl. Kronggahan, Sleman, Yogyakarta</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-gray-900 py-4">
+            <div class="max-w-6xl mx-auto text-center">
+                <p class="text-gray-500 text-sm">&copy; 2024 PsyRoom. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

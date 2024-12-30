@@ -1,0 +1,7 @@
+{% if current_user.is_authenticated %}
+<section class="logout-button">
+    <form action="/logout" method="POST">
+        <button type="submit">Logout</button>
+    </form>
+</section>
+{% endif %}
